@@ -25,25 +25,30 @@
 # second_base = false
 # third_base = false
 
-outs = 0
-bases = []
-strikes = 0
-balls = 0
-score = 0
-
-def add_score ()
-    until bases.length < 4
-        if array[-1] == 1
-            score += bases.sum.to_i
-            bases.pop
+def add_runners_to_score(arr)
+    points = 0
+    new_bases_array = arr
+    return_array = []
+    until arr.length < 4
+        if arr[-1] == 1
+            points += new_bases_array[-1].to_i
+            new_bases_array.pop
         else
-            bases.pop
+            new_bases_array.pop
         end
     end
+    return_array.push(new_bases_array)
+    return_array.push(points.to_i)
+    return return_array
 end
 
 def batter_up ()
-
+    outs = 0
+    bases = []
+    strikes = 0
+    balls = 0
+    core = 0
+    score = 0
 
     until outs == 3
         until (strikes == 3 || balls == 4 || bases.length >= 4)
@@ -87,25 +92,34 @@ def batter_up ()
                 if (1..3) === hit_index
                     puts "Line drive!"
                     bases.unshift(1)
-                    add_score()
+                    if bases.length >= 4
+                        score += add_runners_to_score(bases)[1]
+                        bases = add_runners_to_score(bases)[0]
+                    end
                 elsif (4..6) === hit_index 
                     puts "Double!"
                     bases.unshift(0,1)
-                    add_score()
+                    if bases.length >= 4
+                        score += add_runners_to_score(bases)[1]
+                        bases = add_runners_to_score(bases)[0]
+                    end
                 elsif (7..8) === hit_index 
                     puts "Foul Ball!"
                     balls += 1
                 elsif hit_index == 9
                     puts "Triple!"
                     bases.unshift(0,0,1)
-                    add_score()
+                    if bases.length >= 4
+                        score += add_runners_to_score(bases)[1]
+                        bases = add_runners_to_score(bases)[0]
+                    end
                 elsif hit_index == 10
                     puts "HOME RUN!"
-                    home_run_total = 1
-                    bases.each { |i|
-                        home_run_total += i
-                    }
-                    score += home_run_total
+                    bases.unshift(0,0,0,1)
+                    if bases.length >= 4
+                        score += add_runners_to_score(bases)[1]
+                        bases = add_runners_to_score(bases)[0]
+                    end
                 end
             else
                 strikes += 1
@@ -127,12 +141,10 @@ def batter_up ()
             bases.unshift(1)
             strikes = 0
             balls = 0
-            add_score()
-        end
-
-        if bases.length >= 4
-            score += bases.sum.to_i
-            bases = []
+            if bases.length >= 4
+                score += add_runners_to_score(bases)[1].to_i
+                bases = add_runners_to_score(bases)[0]
+            end
         end
 
         puts "score = " + score.to_s
