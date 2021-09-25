@@ -25,6 +25,10 @@
 # second_base = false
 # third_base = false
 
+require('colorize')
+
+puts "Colour".blue
+
 def add_runners_to_score(arr)
     points = 0
     new_bases_array = arr
