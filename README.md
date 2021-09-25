@@ -75,8 +75,9 @@ Extra features
 
 1. Bundler
 1. TTY-fonts
+1. Artii
 1. TTY-box
 1. TTY-prompt
-1. Colourize (for string colouring)
+1. Colorize (for string colouring)
 1. Paint (includes effects)
 1. Require all
