@@ -1,6 +1,5 @@
 class PlayerBatter
-
-    attr_accessor :strikes :balls :outs :home_runs :bases
+    attr_accessor :strikes, :balls, :outs, :home_runs, :bases
     attr_reader :name
 
     def initialize(name)
@@ -12,16 +11,24 @@ class PlayerBatter
         @bases = []
     end
 
-    def add_baserunners(hit_value)
+    def hit(hit_value, text)
         case hit_value
         when 1
             @bases.unshift(1)
+            puts text
+            reset()
         when 2
             @bases.unshift(0,1)
+            puts text
+            reset()
         when 3
             @bases.unshift(0,0,1)
+            puts text
+            reset()
         when 4
             @bases.unshift(0,0,0,1)
+            puts text
+            reset()
         end
         
         until @bases.length < 4
@@ -34,24 +41,9 @@ class PlayerBatter
         end
     end
 
-    def 1b_hit()
-        puts "Line drive!"
-        add_baserunners(1)
-    end
-
-    def 2b_hit()
-        puts "Double!"
-        add_baserunners(2)
-    end
-
-    def triple()
-        puts "Triple!"
-        add_baserunners(3)
-    end
-
-    def home_run()
-        puts "HOME RUN!"
-        add_baserunners(4)
+    def reset()
+        @strikes = 0
+        @balls = 0
     end
 
     def strike_count()
@@ -59,6 +51,8 @@ class PlayerBatter
         if @strikes == 3
             puts "Strikeout!"
             @outs += 1
+            reset()
+        end
     end
 
     def foul_or_ball(v)
@@ -69,16 +63,11 @@ class PlayerBatter
             puts "Ball!"
             @balls += 1
             if @balls == 4
-                puts "Ball 4! Batter walks..."
-                add_baserunners(1)
-                @strikes = 0
-                @balls = 0
+                hit(1, "Ball 4! Batter walks...")
+                reset()
             end
         else
             puts "Foul Ball!"
         end
     end
-    
-
-
 end

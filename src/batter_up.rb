@@ -25,46 +25,43 @@
 # second_base = false
 # third_base = false
 
-require('colorize')
+require "colorize"
+require "./batter_class.rb"
+require "tty-prompt"
 
+prompt = TTY::Prompt.new
 
+play_game = true
 
-def batter_up ()
-    outs = 0
-    bases = []
-    strikes = 0
-    balls = 0
-    core = 0
-    score = 0
+until play_game == false
 
-    until outs == 3
-        until (strikes == 3 || balls == 4 || bases.length >= 4)
-            puts "Choose swing"
-            puts "1. Swing high"
-            puts "2. Swing mid"
-            puts "3. Swing low"
-            puts ""
-            puts "4. No swing"
+    choice = prompt.select("Welcome to Batter-Up!", %w(Play High-Scores Exit))
 
-            swing = gets.chomp
+    case choice
+    when "Play"
+        player = PlayerBatter.new(prompt.ask("Please enter your name: "))
+        outs = player.outs
+
+        until outs == 3
+            swing = prompt.select("Choose your swing:", %w(Swing-High Swing-Mid Swing-Low No-Swing))
+
+            system("clear")
             pitch = rand(1..15)
             swing_index = 0
-
+    
             case swing 
-            when "1"
+            when "Swing-High"
                 swing_index = 2..4
-            when "2"
+            when "Swing-Mid"
                 swing_index = 7..9
-            when "3"
+            when "Swing-Low"
                 swing_index = 12..14
-            when "4"
+            when "No-Swing"
                 swing_index = 0
-            else
-                puts "Invalid input! Try again"
             end
-
+    
             puts "Pitch: " + pitch.to_s
-
+    
             if swing_index == 0
                 if pitch === (2..4) || pitch === (7..9) || pitch === (12..14)
                     player.strike_count()
@@ -75,41 +72,39 @@ def batter_up ()
                 puts "HIT!"
                 hit_index = rand(1..10)
                 if (1..3) === hit_index
-                    player.1b_hit()
+                    player.hit(1, "Line drive!")
                 elsif (4..6) === hit_index 
-                    player.2b_hit()
+                    player.hit(2, "Double!")
                 elsif (7..8) === hit_index 
                     player.foul_or_ball("foul")
                 elsif hit_index == 9
-                    player.triple()
+                    player.hit(3, "Triple!")
                 elsif hit_index == 10
-                    player.home_run()
+                    player.hit(4, "HOME RUN!!")
                 end
             else
-                strikes += 1
+                player.strike_count()
                 puts "Swing and a miss!"
             end
-            puts "Strikes: " + strikes.to_s
-            puts "Balls: " + balls.to_s
-            p bases
-            puts "Outs: " + outs.to_s
+
+            puts "Strikes: " + player.strikes.to_s
+            puts "Balls: " + player.balls.to_s
+            p player.bases
+            puts "Outs: " + player.outs.to_s
+            puts "Home-Runs: " + player.home_runs.to_s
+            outs = player.outs
         end
-
-        if strikes == 3
-            outs += 1
-            puts "Next batter"
-            strikes = 0
-            balls = 0
-        elsif balls == 4
-
-        end
-
-        puts "score = " + score.to_s
-        strikes = 0
-        balls = 0
+        puts "Game Over!"
+    when "High-Scores"
+        puts "High-Scores"
+    when "Exit"
+        play_game = false
     end
 end
 
 
-batter_up()
+
+
+
+
 puts "game over!"
