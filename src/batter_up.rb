@@ -1,33 +1,9 @@
-# class Batter
-#     # define new player
-#     def initialize(name)
-#         @name = name
-#     end
-
-#     @strikes = 0
-#     @outs = 0
-
-#     def strike_count 
-#         if @strikes == 3
-#             outs_count()
-#         elsif @strikes < 3
-#             @strikes += 1
-#         end
-#     end
-
-#     def outs_count
-#         @outs += 1
-#     end
-# end
-
-# outs = 0
-# first_base = false
-# second_base = false
-# third_base = false
-
 require "colorize"
-require "./batter_class.rb"
 require "tty-prompt"
+require "./batter_class.rb"
+require "./no_swing.rb"
+require "./swing.rb"
+require "./scoreboard.rb"
 
 prompt = TTY::Prompt.new
 
@@ -43,9 +19,18 @@ until play_game == false
         outs = player.outs
 
         until outs == 3
-            swing = prompt.select("Choose your swing:", %w(Swing-High Swing-Mid Swing-Low No-Swing))
+            bases = player.bases
+            home_runs = player.home_runs
+            strikes = player.strikes
+            balls = player.balls
+            outs = player.outs
 
-            system("clear")
+            # Render scoreboard and graphic interface
+            scoreboard(bases, home_runs, strikes, balls, outs)
+            no_swing(0, " ")
+
+            # Player chooses swing, random pitch generated
+            swing = prompt.select("Choose your swing:", %w(Swing-High Swing-Mid Swing-Low No-Swing))
             pitch = rand(1..15)
             swing_index = 0
     
@@ -60,39 +45,44 @@ until play_game == false
                 swing_index = 0
             end
     
-            puts "Pitch: " + pitch.to_s
-    
             if swing_index == 0
-                if pitch === (2..4) || pitch === (7..9) || pitch === (12..14)
+                if (2..4) === pitch || (7..9) === pitch || (12..14) === pitch
                     player.strike_count()
+                    scoreboard(bases, home_runs, strikes, balls, outs)
+                    no_swing(pitch, "STRIKE")
+                    sleep(1)
                 else
                     player.foul_or_ball("ball")
+                    scoreboard(bases, home_runs, strikes, balls, outs)
+                    no_swing(pitch, "BALL")
+                    sleep(1)
                 end
             elsif swing_index === pitch
-                puts "HIT!"
+                scoreboard(bases, home_runs, strikes, balls, outs)
                 hit_index = rand(1..10)
                 if (1..3) === hit_index
-                    player.hit(1, "Line drive!")
+                    player.hit(1)
+                    swing(pitch, "Line drive!", swing_index)
                 elsif (4..6) === hit_index 
-                    player.hit(2, "Double!")
+                    player.hit(2)
+                    swing(pitch, "Double!", swing_index)
                 elsif (7..8) === hit_index 
                     player.foul_or_ball("foul")
+                    swing(pitch, "Foul!", swing_index)
                 elsif hit_index == 9
-                    player.hit(3, "Triple!")
+                    player.hit(3)
+                    swing(pitch, "Triple", swing_index)
                 elsif hit_index == 10
-                    player.hit(4, "HOME RUN!!")
+                    player.hit(4)
+                    swing(pitch, "HOME RUN!!", swing_index)
                 end
+                sleep(1)
             else
                 player.strike_count()
-                puts "Swing and a miss!"
+                scoreboard(bases, home_runs, strikes, balls, outs)
+                swing(pitch, "Swing and a miss!", swing_index)
+                sleep(1)
             end
-
-            puts "Strikes: " + player.strikes.to_s
-            puts "Balls: " + player.balls.to_s
-            p player.bases
-            puts "Outs: " + player.outs.to_s
-            puts "Home-Runs: " + player.home_runs.to_s
-            outs = player.outs
         end
         puts "Game Over!"
     when "High-Scores"
@@ -101,10 +91,5 @@ until play_game == false
         play_game = false
     end
 end
-
-
-
-
-
 
 puts "game over!"

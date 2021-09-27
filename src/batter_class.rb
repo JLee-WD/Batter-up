@@ -11,23 +11,19 @@ class PlayerBatter
         @bases = []
     end
 
-    def hit(hit_value, text)
+    def hit(hit_value)
         case hit_value
         when 1
             @bases.unshift(1)
-            puts text
             reset()
         when 2
             @bases.unshift(0,1)
-            puts text
             reset()
         when 3
             @bases.unshift(0,0,1)
-            puts text
             reset()
         when 4
             @bases.unshift(0,0,0,1)
-            puts text
             reset()
         end
         
@@ -48,7 +44,7 @@ class PlayerBatter
 
     def strike_count()
         @strikes += 1
-        if @strikes == 3
+        if @strikes === 3
             puts "Strikeout!"
             @outs += 1
             reset()
