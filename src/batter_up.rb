@@ -50,12 +50,12 @@ until play_game == false
                     player.strike_count()
                     scoreboard(bases, home_runs, strikes, balls, outs)
                     no_swing(pitch, "STRIKE")
-                    sleep(1)
+                    sleep(2)
                 else
                     player.foul_or_ball("ball")
                     scoreboard(bases, home_runs, strikes, balls, outs)
                     no_swing(pitch, "BALL")
-                    sleep(1)
+                    sleep(2)
                 end
             elsif swing_index === pitch
                 scoreboard(bases, home_runs, strikes, balls, outs)
@@ -76,14 +76,16 @@ until play_game == false
                     player.hit(4)
                     swing(pitch, "HOME RUN!!", swing_index)
                 end
-                sleep(1)
+                sleep(2)
             else
                 player.strike_count()
                 scoreboard(bases, home_runs, strikes, balls, outs)
                 swing(pitch, "Swing and a miss!", swing_index)
-                sleep(1)
+                sleep(2)
             end
+            outs = player.outs
         end
+        system("clear")
         puts "Game Over!"
     when "High-Scores"
         puts "High-Scores"
