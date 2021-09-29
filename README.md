@@ -81,3 +81,7 @@ Extra features
 1. Colorize (for string colouring)
 1. Paint (includes effects)
 1. Require all
+
+- Tests
+
+1. RSPEC
