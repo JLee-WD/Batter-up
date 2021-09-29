@@ -74,8 +74,7 @@ Extra features
 - Ruby Gems
 
 1. Bundler
-1. TTY-fonts
-1. Artii
+1. TTY-font
 1. TTY-box
 1. TTY-prompt
 1. Colorize (for string colouring)

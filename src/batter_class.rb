@@ -53,10 +53,8 @@ class PlayerBatter
 
     def foul_or_ball(v)
         if v == "foul" && @balls < 3
-            puts "Foul Ball!"
             @balls += 1
         elsif v == "ball"
-            puts "Ball!"
             @balls += 1
             if @balls == 4
                 hit(1, "Ball 4! Batter walks...")

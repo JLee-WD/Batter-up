@@ -104,8 +104,5 @@ def swing (pitch = 0, text = " ",swing_index)
     end
 
     puts choose_swing_box
-    puts pitch
-    puts text
-    puts swing_index
 
 end

@@ -1,23 +1,30 @@
 require "colorize"
 require "tty-prompt"
-require "./batter_class.rb"
-require "./no_swing.rb"
-require "./swing.rb"
-require "./scoreboard.rb"
+require_relative "./menu.rb"
+require_relative "./batter_class.rb"
+require_relative "./no_swing.rb"
+require_relative "./swing.rb"
+require_relative "./scoreboard.rb"
 
 prompt = TTY::Prompt.new
 
 play_game = true
 
+# Game loop
 until play_game == false
 
+    # Menu
+    menu()
     choice = prompt.select("Welcome to Batter-Up!", %w(Play High-Scores Exit))
 
     case choice
     when "Play"
+
+        # Instantiate player class
         player = PlayerBatter.new(prompt.ask("Please enter your name: "))
         outs = player.outs
 
+        # Batting system loop
         until outs == 3
             bases = player.bases
             home_runs = player.home_runs
@@ -85,6 +92,8 @@ until play_game == false
             end
             outs = player.outs
         end
+
+        # After 3 outs, game over
         system("clear")
         puts "Game Over!"
     when "High-Scores"
@@ -93,5 +102,3 @@ until play_game == false
         play_game = false
     end
 end
-
-puts "game over!"
