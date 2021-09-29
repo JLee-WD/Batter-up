@@ -64,4 +64,7 @@ class PlayerBatter
             puts "Foul Ball!"
         end
     end
+
+    
+
 end

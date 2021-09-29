@@ -5,6 +5,7 @@ require_relative "./batter_class.rb"
 require_relative "./no_swing.rb"
 require_relative "./swing.rb"
 require_relative "./scoreboard.rb"
+require_relative "./high_score.rb"
 
 prompt = TTY::Prompt.new
 
@@ -94,6 +95,8 @@ until play_game == false
         end
 
         # After 3 outs, game over
+        name = player.name
+        add_high_score(name, home_runs)
         system("clear")
         puts "Game Over!"
     when "High-Scores"
