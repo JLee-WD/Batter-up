@@ -14,18 +14,19 @@ play_game = true
 # Game loop
 until play_game == false
 
-    # Menu
+    # Animated menu plus menu prompt using tty-prompt gem
     menu()
     choice = prompt.select("Welcome to Batter-Up!", %w(Play High-Scores Exit))
 
+    # Menu choice case statement
     case choice
     when "Play"
 
-        # Instantiate player class
+        # Instantiate player class when player selects play
         player = PlayerBatter.new(prompt.ask("Please enter your name: "))
         outs = player.outs
 
-        # Batting system loop
+        # Batting system loop, game over at 3 outs
         until outs == 3
             bases = player.bases
             home_runs = player.home_runs
@@ -94,13 +95,16 @@ until play_game == false
             outs = player.outs
         end
 
-        # After 3 outs, game over
+        # At game over, add score to high scores yaml file
         name = player.name
         add_high_score(name, home_runs)
+
         system("clear")
         puts "Game Over!"
+
     when "High-Scores"
-        puts "High-Scores"
+        puts retrieve_high_scores()
+        prompt.select("Press enter to go back to the menu", %w(Back))
     when "Exit"
         play_game = false
     end

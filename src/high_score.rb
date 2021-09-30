@@ -1,4 +1,5 @@
 require 'yaml'
+require "tty-table"
 
 def add_high_score(name, home_runs) 
 
@@ -27,4 +28,22 @@ def add_high_score(name, home_runs)
     }
 end
 
-add_high_score("Jeremy", 3)
+def retrieve_high_scores()
+    high_scores = YAML.load(File.read("high_scores.yml"))
+    # renderer = TTY::Table::Renderer::Unicode.new(table)
+
+    table = TTY::Table.new(
+        ["Name","Score"], 
+        [
+        [high_scores[0][:name], high_scores[0][:score]], 
+        [high_scores[1][:name], high_scores[1][:score]], 
+        [high_scores[2][:name], high_scores[2][:score]], 
+        [high_scores[3][:name], high_scores[3][:score]], 
+        [high_scores[4][:name], high_scores[4][:score]]
+        ]
+        )
+
+    return table.render(:unicode, padding: [0,3,0,3])
+end
+
+

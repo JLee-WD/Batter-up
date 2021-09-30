@@ -223,64 +223,64 @@ def menu()
         "
     end
     
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title19
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title18
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title17
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title16
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title15
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title14
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title13
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title12
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title11
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title10
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title9
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title8
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title7
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title6
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title5
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title4
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title3
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title2
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title1    
-    sleep(0.1)
+    sleep(0.05)
     system("clear")
     puts title
 end
