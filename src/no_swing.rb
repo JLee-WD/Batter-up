@@ -1,7 +1,9 @@
 require "tty-box"
 
+# Render no swing graphic and visualize pitch
 def no_swing (pitch = 0, text = " ")
 
+    # At default, all pitch positions in strikezone are empty
     p1 = " "
     p2 = " "
     p3 = " "
@@ -19,6 +21,7 @@ def no_swing (pitch = 0, text = " ")
     p15 = " "
     p16 = " "
 
+    # For pitch, replace with "O" to visualize pitch location
     case pitch
     when 1
         p1 = "O"
@@ -52,7 +55,7 @@ def no_swing (pitch = 0, text = " ")
         p15 = "O"
     end
         
-
+    # Render no swing graphic in tty-box with pitch location
     choose_swing_box = TTY::Box.frame(width: 100, height: 22, border: :thick) do
     "
                                                           . 0
@@ -80,46 +83,3 @@ def no_swing (pitch = 0, text = " ")
     puts choose_swing_box
 
 end
-
-# choose_swing([1,1,1], 2, 2, 3, 1)
-
-# puts "
-# +-----------------------------------------------------------------------+         
-# |         /)                                                 [#{second_base}]        |
-# |        //                                                .'   '.      |
-# |       //                                               .'       '.    |
-# |      //    __                                       [#{third_base}]    ( )    [#{first_base}] |
-# |     //    [__]__            Choose your swing:         '.       .'    |
-# |    EO]    | *|      +---+                                '.   .'      |
-# |      @@@@@@@@@|     |   |  1. HIGH                        |[ ]|       |
-# |          | || |     |   |  2. MID                                     |
-# |          | || |     |   |  3. LOW                                     |
-# |          |====|     +---+                                  +----------|
-# |          //  ||                                            | HR     #{home_runs.to_s} |
-# |         ||    \\\\                                           | S      #{strikes.to_s} |
-# |         GO     OD                                          | B      #{balls.to_s} |
-# |                                                            | O      #{outs.to_s} |
-# +-----------------------------------------------------------------------+
-# "
-# end
-
-# prompt.select("Choose your swing:", %w(Swing-High Swing-Mid Swing-Low No-Swing))
-
-# puts "         
-# +-----------------------------------------------------------------------+
-# |                                                               [x]     |
-# |                                                             .'   '.   |
-# |                                                          [ ]  ( )  [x]|
-# |            __                                               '.   .'   |
-# |           [__]__                                             |[ ]|    |
-# |           | *|      +---+                                             |
-# |          |@@@@@@@8==|===|=                                            |
-# |          | || |     | o |   Swing and a MISS!                         |
-# |          | || |     |   |                                             |
-# |          |====|     +---+                                  +----------|
-# |          ||  \\\\                                            | HR     4 |
-# |         //    ||                                           | S      1 |
-# |        GO     OD                                           | B      2 |
-# |                                                            | O      2 |
-# +-----------------------------------------------------------------------+
-# "

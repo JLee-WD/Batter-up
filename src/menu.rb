@@ -1,6 +1,7 @@
 require "tty-box"
 require "tty-font"
 
+# Menu title frames to simulate sliding title
 def menu()
 
     title19 =  TTY::Box.frame(width: 100, height: 12, border: :thick) do

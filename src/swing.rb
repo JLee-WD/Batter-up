@@ -1,7 +1,9 @@
 require "tty-box"
 
+# Render swing graphic and visualize pitch
 def swing (pitch = 0, text = " ",swing_index)
 
+    # At default, all pitch positions in strikezone are empty
     p1 = " "
     p2 = " "
     p3 = " "
@@ -19,15 +21,18 @@ def swing (pitch = 0, text = " ",swing_index)
     p15 = " "
     p16 = " "
 
+    # At default, all swing positions are empty
     sw_h = "     "
     sw_m = "     "
     sw_l = "     "
 
+    # Initialize swing variables to match with swing passed in
     swing_range = swing_index
     high_range = 2..4
     mid_range = 7..9
     low_range = 12..14
 
+    # For swing, replace with "=" to visualize swing
     if swing_range == high_range
         sw_h = "D===="
         p2 = "="
@@ -45,6 +50,7 @@ def swing (pitch = 0, text = " ",swing_index)
         p14 = "="
     end
 
+    # For pitch, replace with "O" to visualize pitch location
     case pitch
     when 1
         p1 = "O"
@@ -78,7 +84,7 @@ def swing (pitch = 0, text = " ",swing_index)
         p15 = "O"
     end
         
-
+    # Render swing graphic in tty-box with pitch location and swing location
     choose_swing_box = TTY::Box.frame(width: 100, height: 22, border: :thick) do
     "
                                                               0

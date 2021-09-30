@@ -1,18 +1,19 @@
 require 'yaml'
 require "tty-table"
 
+# Method to add player name and home-runs to high score table
 def add_high_score(name, home_runs) 
 
-    # retrieve current high scores from yaml file
+    # Retrieve current high scores from yaml file
     high_scores = YAML.load(File.read("high_scores.yml"))
 
-    # create new record from recent game
+    # Create new record from recent game
     new_record = {name: name.to_s, score: home_runs.to_i}
 
-    # add new record to start of current high scores array
+    # Add new record to start of current high scores array
     high_scores.unshift(new_record)
 
-    # loop through current high scores, sorting the new record to the correct place, highest first
+    # Loop through current high scores, sorting the new record to the correct place, highest first
     i = 0
     while i < high_scores.length - 1
 
@@ -22,16 +23,19 @@ def add_high_score(name, home_runs)
         i += 1
     end
 
-    # write new high scores array with new record to yaml file
+    # Write new high scores array with new record to yaml file
     File.open("high_scores.yml", "w") { |file|
         file.write(high_scores.to_yaml)
     }
 end
 
+# Retrieve high scores and print to tty-table
 def retrieve_high_scores()
-    high_scores = YAML.load(File.read("high_scores.yml"))
-    # renderer = TTY::Table::Renderer::Unicode.new(table)
 
+    # Retrieve current high scores from yaml file
+    high_scores = YAML.load(File.read("high_scores.yml"))
+
+    # Prints the top 5 high scores to tty-table
     table = TTY::Table.new(
         ["Name","Score"], 
         [

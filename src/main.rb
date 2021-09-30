@@ -1,5 +1,8 @@
+# Gems
 require "colorize"
 require "tty-prompt"
+
+# Files
 require_relative "./menu.rb"
 require_relative "./batter_class.rb"
 require_relative "./no_swing.rb"
@@ -7,11 +10,11 @@ require_relative "./swing.rb"
 require_relative "./scoreboard.rb"
 require_relative "./high_score.rb"
 
+# Initiate prompt
 prompt = TTY::Prompt.new
 
-play_game = true
-
 # Game loop
+play_game = true
 until play_game == false
 
     # Animated menu plus menu prompt using tty-prompt gem
@@ -22,27 +25,30 @@ until play_game == false
     case choice
     when "Play"
 
-        # Instantiate player class when player selects play
+        # Instantiate PlayerBatter class when player selects play, with name input for high score record
         player = PlayerBatter.new(prompt.ask("Please enter your name: "))
         outs = player.outs
 
         # Batting system loop, game over at 3 outs
         until outs == 3
+
+            # Retrieve/update counters from PlayerBatter instance
             bases = player.bases
             home_runs = player.home_runs
             strikes = player.strikes
             balls = player.balls
             outs = player.outs
 
-            # Render scoreboard and graphic interface
+            # Render scoreboard and visual interface, populated by counters
             scoreboard(bases, home_runs, strikes, balls, outs)
             no_swing(0, " ")
 
             # Player chooses swing, random pitch generated
             swing = prompt.select("Choose your swing:", %w(Swing-High Swing-Mid Swing-Low No-Swing))
             pitch = rand(1..15)
+
+            # Chosen swing converted into integer range
             swing_index = 0
-    
             case swing 
             when "Swing-High"
                 swing_index = 2..4
@@ -54,6 +60,7 @@ until play_game == false
                 swing_index = 0
             end
     
+            # If no swing, check if pitch is strike or ball
             if swing_index == 0
                 if (2..4) === pitch || (7..9) === pitch || (12..14) === pitch
                     player.strike_count()
@@ -66,6 +73,8 @@ until play_game == false
                     no_swing(pitch, "BALL")
                     sleep(2)
                 end
+
+            # If swing chosen, and if pitch matches swing range, hit chance is calculated
             elsif swing_index === pitch
                 scoreboard(bases, home_runs, strikes, balls, outs)
                 hit_index = rand(1..10)
@@ -86,6 +95,8 @@ until play_game == false
                     swing(pitch, "HOME RUN!!", swing_index)
                 end
                 sleep(2)
+
+            # If swing chosen, and if pitch DOES NOT match swing range, add strike
             else
                 player.strike_count()
                 scoreboard(bases, home_runs, strikes, balls, outs)
@@ -95,16 +106,19 @@ until play_game == false
             outs = player.outs
         end
 
-        # At game over, add score to high scores yaml file
+        # At 3 outs game over, add score to high scores to yaml file
         name = player.name
         add_high_score(name, home_runs)
 
         system("clear")
         puts "Game Over!"
 
+    # If high-scores chosen from main menu, retrieve yaml and print in tty-table    
     when "High-Scores"
         puts retrieve_high_scores()
         prompt.select("Press enter to go back to the menu", %w(Back))
+
+    # Exit game
     when "Exit"
         play_game = false
     end
