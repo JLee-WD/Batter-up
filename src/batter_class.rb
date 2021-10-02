@@ -66,12 +66,11 @@ class PlayerBatter
         elsif v == "ball"
             @balls += 1
             if @balls == 4
-                hit(1, "Ball 4! Batter walks...")
+                hit(1)
                 reset()
             end
         else
             puts "Foul Ball!"
         end
     end
-
 end
