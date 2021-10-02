@@ -18,8 +18,6 @@ The app will not solve any particular problem as it is a game created for entert
 
 ## 2. Features
 
-> - Error handling
-
 The first feature is the main component of the app, the batting system. This system includes: randomly generating the pitch matching it against the chosen swing using ruby gem "Tty-prompt", and the hit chance outcome calculator. The batting system is located in the `main.rb file`. When the game starts, the game enters the first loop which breaks then the player's outs equals 3. The player selects an action from a prompt, swing high, mid, low or no-swing, and a random pitch is generated. The high swing holds the value as a range of the top of the strikezone, the mid swing holds the mid range of the strikezone, and the low swing holds the low range of the strikezone. If the generated pitch matches up with the chosen swing range, it becomes a hit. The hit is allocated a random integer, and the outcomes are represented as ranges. This way, the outcomes can be adjusted to raise or lower the chance of that outcome. For example, there is a higher chance of a 1 base or 2 base hit(`1..3, 4..6` respectively), and a low chance of a 3 base or home run hit(`3, 4` respectively). If the player choose not to swing, the generated pitch can either be a strike or a ball. At this point, the outcome is saved in the PlayerBatter class. Once 3 outs are recorded the loop and thus the game, ends.
 
 The second feature is the PlayerBatter class which stores the `@strikes`, `@balls`, `@outs`, `@home_runs` and `@bases` as instance variables. The class, which is located in `batter_class.rb` is instansiated when the player enters their name at the start of the game. The above instance variables are central to keeping track of the game's operation at any given time. The game itself is driven by the values of these variables. At the start of the game, all default values are `0` with the exception of the name, which is a string, and the bases, which is an array. When a strike occurs in main.rb, the instance method `strike_count()` is called which adds 1 to `@strikes`, and checks if strikes equals 3. If so, it adds 1 to `@outs`, then resets balls and strikes back to 0 with the instance method `reset()`. If a hit occurs, the instance method `hit()` takes in one parameter and passes it through a case statement. Depending on the integer passed in from the hit (`1` for one base hit, `2` for two base hit etc.), the case statement will add the respective values to represent the baserunner position. For example, if the hit passes in a 2 base hit the method will `unshift(0,1)` to `@bases` array. If the hit passes in a 3 base hit the method will `unshift(0,0,1)` to `@bases` array and so forth. It then does a check, if `@bases` exceeds the length of 3, it enters a loop and adds the baserunners(which are have a value of 1) to `@home_runs` and removes them from the array. It will loop until `@bases` is less than 4. The last method in the class is `foul_or_ball()` which takes in one string as a parameter. If the string is `"foul"`, the method will check if `@balls` is less than 3, if so it will add 1(This is because in baseball, a foul ball can't force a 4-ball walk). If the method passes the string `"ball"`, it will add 1 to `@balls`, then checks if `@balls` equals 4. If so, then it calls the `hit()` method to move the batter to first base. It then resets the strike and ball count with `reset()`. Finally if both conditions are not met, the `else` outcome is a `puts` which states `"Foul Ball!"`.
@@ -34,41 +32,45 @@ The final feature is the animated menu. This feature is fairly simple. Using the
 
 ### User interaction and Experience
 
-> - How the user will find out how to interact with / use each feature
-> - How the user will interact with / use each feature
-> - How errors will be handled by the application and displayed to the user
+The user will interact with the features in this app with the aid of ruby gem "Tty-prompt". Using prompt ensures navigating and using the app is very easy for users. Prompt is used at the main menu, when selecting `Play Game`, `High Scores` or `Exit`. The user will use their arrow keys to move up or down, and press enter to select the menu items. Similarly, during the game the player will select the swing with the same prompt. The UI is intentionally simple by design, options are clear easily recognizable.
 
-The user will interact with the features in this app with the aid of ruby gem "Tty-prompt". Prompt is used at the main menu, when selecting `Play Game`, `High Scores` or `Exit`. The user will use their arrow keys to move up or down, and press enter to select the menu items. Similarly, during the game the player will select the swing with the same prompt. Using prompt removes unknown input from the user, thus removing errors stemming from user input.
+The graphic interface shown when the user is selecting a swing provides figures drawn in ascii to indicate the batter and pitcher. Both have stances that are in pre-pitch and pre-swing. The strikezone, scoreboard, and baserunning trackers are also shown. When the user chooses a swing a number of things happen, the batter and pitcher's stances change, the pitch location is shown, the swing is shown, and text pops up showing the result. This is all (almost) real-time visual feedback to the player. The scoreboard and baserunning tracker will update with their result providing feedback of their progress.
+
+Using prompt removes unknown input from the user, thus removing errors stemming from user input. The only time when the user is asked to input data is the prompt for their name. For this input, an error handling method named `name_error` located in `error_handling.rb`, checks if the value of the name input is nil. If so, the method will throw an arguement error and print to the console `"Name must not be empty"`. If the user only inputs white spaces, then the method will strip the white space and check if the name is empty, if so it will throw an error. The purpose of this, is so that when a new record is added to the high scores yaml file, the `:name` value is not empty.
 
 ### Control Flow Diagram
-
-> - Show the workflow/logic and/or integration of the features in your application for each feature.
-> - Utilise a recognised format or set of conventions for a control flow diagram, such as UML.
 
 Batting System Control Flow Diagram
 ![Batting System Control Flow Diagram](./docs/Baseball_Flowchart.png)
 
 ### Implementation Plan
 
-> - Outlines how each feature will be implemented and a checklist of tasks for each feature
-> - Prioritise the implementation of different features, or checklist items within a feature
-> - Provide a deadline, duration or other time indicator for each feature or checklist/checklist-item
->
-> Utilise a suitable project management platform to track this implementation plan
->
-> Your checklists for each feature should have at least 5 items.
+I have used Trello to aid implementation.
 
-Minimal Viable Product features:
+![Trello Overall](./docs/trello.png)
 
-1. Batting System
-1. Scoreboard
-1. Baserunning tracker
+Priority MVP (Minimal Viable Product) features are listed below:
 
-Extra features
+1. Batting system
+   ![Trello - Batting System](./docs/trello_batting_system.png)
+1. Batter Class
+   ![Trello - Batter Class](./docs/trello_batting_class.png)
+1. Basic graphic interface
+   ![Trello - Graphic Interface](./docs/trello_graphic.png)
+1. High scores feature
+   ![Trello - High Score](./docs/trello_high_score.png)
+1. Menu
+   ![Trello - Menu](./docs/trello_menu.png)
+1. Scoreboard including Baserunning Tracker
+   ![Trello - Scoreboard](./docs/trello_scoreboard.png)
+1. Ruby gems: Bundler, Tty-prompt, Tty-box, Tty-font, Colorize, Minitest
+   ![Trello - Gems](./docs/trello_gems.png)
 
-1. High Score tracker
+Extra features to be implemented at a later time:
+
 1. Additional graphic animations
 1. More in-depth hit-chance batting system
+1. Pitching system
 1. Expanding game length to 9 innings
 1. Implement batter skill to affect hit rates
 1. Implement pitcher skill to affect chances of strikes
@@ -93,9 +95,4 @@ Extra features
 1. Colorize (for string colouring)
 1. Paint (includes effects)
 1. Require all
-
-- Tests
-
-1. RSPEC
-1. minitest
-1. testunit
+1. Minitest
