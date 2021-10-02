@@ -9,6 +9,7 @@ require_relative "./no_swing.rb"
 require_relative "./swing.rb"
 require_relative "./scoreboard.rb"
 require_relative "./high_score.rb"
+require_relative "./error_handling.rb"
 
 # Initiate prompt
 prompt = TTY::Prompt.new
@@ -26,8 +27,11 @@ until play_game == false
     when "Play"
 
         # Instantiate PlayerBatter class when player selects play, with name input for high score record
-        player = PlayerBatter.new(prompt.ask("Please enter your name: "))
+        player_name = prompt.ask("Please enter your name: ")
+        name_error(player_name)
+        player = PlayerBatter.new(player_name)
         outs = player.outs
+
 
         # Batting system loop, game over at 3 outs
         until outs == 3
