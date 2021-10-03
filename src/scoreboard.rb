@@ -1,5 +1,6 @@
 require "tty-box"
 require "tty-font"
+require "colorize"
 
 # Render scoreboard method using counters from PlayerBatter class instance
 def scoreboard (bases, home_runs, strikes, balls, outs)
@@ -20,7 +21,12 @@ def scoreboard (bases, home_runs, strikes, balls, outs)
     bases[2] == 1 ? third_base = "x" : third_base = " "
 
     # Render scoreboard in tty-box
-    scoreboard_box = TTY::Box.frame(width: 100, height: 12, border: :thick) do
+    scoreboard_box = TTY::Box.frame(width: 100, height: 12, border: :thick, style: {
+        border: {
+            fg: :red,
+            bg: :blue
+        }
+      }) do
     "#{heading}
                                                                                         [#{second_base}]
     ( #{home_runs.to_s} ) HOME RUNS                                                                   .'   '.

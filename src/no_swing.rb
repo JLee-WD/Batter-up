@@ -56,7 +56,12 @@ def no_swing (pitch = 0, text = " ")
     end
         
     # Render no swing graphic in tty-box with pitch location
-    choose_swing_box = TTY::Box.frame(width: 100, height: 22, border: :thick) do
+    choose_swing_box = TTY::Box.frame(width: 100, height: 22, border: :thick, style: {
+        border: {
+            fg: :red,
+            bg: :blue
+        }
+      }) do
     "
                                                           . 0
                                                            V|)

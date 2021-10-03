@@ -85,7 +85,12 @@ def swing (pitch = 0, text = " ",swing_index)
     end
         
     # Render swing graphic in tty-box with pitch location and swing location
-    choose_swing_box = TTY::Box.frame(width: 100, height: 22, border: :thick) do
+    choose_swing_box = TTY::Box.frame(width: 100, height: 22, border: :thick, style: {
+        border: {
+            fg: :red,
+            bg: :blue
+        }
+      }) do
     "
                                                               0
                                                             (|\\ 
@@ -96,13 +101,13 @@ def swing (pitch = 0, text = " ",swing_index)
                                   
                                  
                                     __
-                                   [__]__              Choose your swing:
+                                   [__]__              
                                   _| *|      +---+
-                                 |____|#{sw_h}#{p1}|#{p2}#{p3}#{p4}|#{p5}   1. HIGH
-                                 | || |#{sw_m}#{p6}|#{p7}#{p8}#{p9}|#{p10}   2. MID
-                                 | || |#{sw_l}#{p11}|#{p12}#{p13}#{p14}|#{p15}   3. LOW
+                                 |____|#{sw_h}#{p1}|#{p2}#{p3}#{p4}|#{p5}   
+                                 | || |#{sw_m}#{p6}|#{p7}#{p8}#{p9}|#{p10}   #{text.colorize(:black).on_white}
+                                 | || |#{sw_l}#{p11}|#{p12}#{p13}#{p14}|#{p15}   
                                  |====|      +---+
-                                 ||  \\\\                #{text}
+                                 ||  \\\\                
                                  //   ||
                                 GO    OD
                                                                                                     

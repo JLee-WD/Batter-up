@@ -213,7 +213,12 @@ def menu()
         "
     end
 
-    title =  TTY::Box.frame(width: 100, height: 12, border: :thick) do
+    title =  TTY::Box.frame(width: 100, height: 12, border: :thick, style: {
+        border: {
+            fg: :red,
+            bg: :blue
+        }
+      }) do
         "
             
       .~''''~.     ____            _     _                           _   _   ____    _ 
