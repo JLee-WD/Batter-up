@@ -52,18 +52,31 @@ I have used Trello as my project management platform to aid implementation. MVP 
 Priority MVP (Minimal Viable Product) features are listed below:
 
 1. Batting system
+
    ![Trello - Batting System](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Batting_System.PNG?raw=true)
+
 1. Batter Class
+
    ![Trello - Batter Class](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Batting_Class.PNG?raw=true)
+
 1. Basic graphic interface
+
    ![Trello - Graphic Interface](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Graphic.PNG?raw=true)
+
 1. High scores feature
+
    ![Trello - High Score](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_High_Score.PNG?raw=true)
+
 1. Menu
+
    ![Trello - Menu](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Menu.PNG?raw=true)
+
 1. Scoreboard including Baserunning Tracker
+
    ![Trello - Scoreboard](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Scoreboard.PNG?raw=true)
+
 1. Ruby gems: Bundler, Tty-prompt, Tty-box, Tty-font, Colorize, Minitest
+
    ![Trello - Gems](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_gems.PNG?raw=true)
 
 Extra features to be implemented at a later time:
