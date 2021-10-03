@@ -2,14 +2,21 @@
 require "colorize"
 require "tty-prompt"
 
-# Files
+# Referenced Files, includes error handling
 require_relative "./menu.rb"
-require_relative "./batter_class.rb"
-require_relative "./no_swing.rb"
-require_relative "./swing.rb"
-require_relative "./scoreboard.rb"
-require_relative "./high_score.rb"
-require_relative "./error_handling.rb"
+begin
+    require_relative "./batter_class.rb"
+    require_relative "./no_swing.rb"
+    require_relative "./swing.rb"
+    require_relative "./scoreboard.rb"
+    require_relative "./high_score.rb"
+    require_relative "./error_handling.rb"
+rescue LoadError
+    puts "Unable to load referenced file from main.rb"
+    exit
+end
+
+
 
 # Initiate prompt
 prompt = TTY::Prompt.new
