@@ -61,13 +61,17 @@ Batting System Control Flow Diagram
 
 Link to Trello board: [https://trello.com/b/5zppmCiL/batter-up](https://trello.com/b/5zppmCiL/batter-up)
 
+<<<<<<< HEAD
 I have used Trello as my project management platform to aid implementation. MVP features are prefixed with MVP before the title for each card. I have separated the cards in the following catagories; Design, MVP to do, Documentation to do, Doing, Done, Deadlines, Testing, and Extra Features. Each MVP card is further broken down into a checklist. Each checklist item is a task required to be completed within the hours allocated.
 
+=======
+>>>>>>> b4ec7ec4fefb3d15b41cd65b8ce686f397f11964
 ![Trello Overall](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello.PNG?raw=true)
 
 Priority MVP (Minimal Viable Product) features are listed below:
 
 1. Batting system
+<<<<<<< HEAD
    ![Trello - Batting System](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Batting_System.PNG?raw=true)
 1. Batter Class
    ![Trello - Batter Class](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Batting_Class.PNG?raw=true)
@@ -80,6 +84,33 @@ Priority MVP (Minimal Viable Product) features are listed below:
 1. Scoreboard including Baserunning Tracker
    ![Trello - Scoreboard](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Scoreboard.PNG?raw=true)
 1. Ruby gems: Bundler, Tty-prompt, Tty-box, Tty-font, Colorize, Minitest
+=======
+
+   ![Trello - Batting System](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Batting_System.PNG?raw=true)
+
+1. Batter Class
+
+   ![Trello - Batter Class](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Batting_Class.PNG?raw=true)
+
+1. Basic graphic interface
+
+   ![Trello - Graphic Interface](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Graphic.PNG?raw=true)
+
+1. High scores feature
+
+   ![Trello - High Score](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_High_Score.PNG?raw=true)
+
+1. Menu
+
+   ![Trello - Menu](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Menu.PNG?raw=true)
+
+1. Scoreboard including Baserunning Tracker
+
+   ![Trello - Scoreboard](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_Scoreboard.PNG?raw=true)
+
+1. Ruby gems: Bundler, Tty-prompt, Tty-box, Tty-font, Colorize, Minitest
+
+>>>>>>> b4ec7ec4fefb3d15b41cd65b8ce686f397f11964
    ![Trello - Gems](https://github.com/JLee-WD/Batter-up/blob/master/docs/Trello_gems.PNG?raw=true)
 
 Extra features to be implemented at a later time:
