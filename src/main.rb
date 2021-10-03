@@ -1,5 +1,4 @@
 # Gems
-require "colorize"
 require "tty-prompt"
 
 # Referenced Files, includes error handling
