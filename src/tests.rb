@@ -1,9 +1,9 @@
 require_relative "./batter_class.rb"
 require_relative "./high_score.rb"
-require_relative "./menu.rb"
-require_relative "./no_swing.rb"
-require_relative "./swing.rb"
-require_relative "./scoreboard.rb"
+# require_relative "./menu.rb"
+# require_relative "./no_swing.rb"
+# require_relative "./swing.rb"
+# require_relative "./scoreboard.rb"
 
 require "minitest/autorun"
 
