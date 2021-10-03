@@ -1,6 +1,6 @@
 # **Batter up!**
 
-# **T1A3 Terminal app - Justin Lee**
+## **T1A3 Terminal app - Justin Lee**
 
 Github Repo: [https://github.com/JLee-WD/Batter-up](https://github.com/JLee-WD/Batter-up)
 
