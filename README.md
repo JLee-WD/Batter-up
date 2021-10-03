@@ -30,7 +30,7 @@ The fifth feature is functionality of saving and retrieving high scores. Utilizi
 
 The final feature is the animated menu. This feature is fairly simple. Using the ruby gem "tty-font", the game title "Batter-Up!" is displayed in a box. This title is replicated 20 times into 20 different variables. For each variable in order, the title is reduced from the left at the same spacing. The variables are then printed in order, separated by `system("clear")` to clear the console, and `sleep(0.05)` to delay the reveal of each variable. This gives the effect that the title slides in from the left to the right when the game is loaded.
 
-### User interaction and Experience
+## 3. User interaction and Experience
 
 The user will interact with the features in this app with the aid of ruby gem "Tty-prompt". Using prompt ensures navigating and using the app is very easy for users. Prompt is used at the main menu, when selecting `Play Game`, `High Scores` or `Exit`. The user will use their arrow keys to move up or down, and press enter to select the menu items. Similarly, during the game the player will select the swing with the same prompt. The UI is intentionally simple by design, options are clear easily recognizable.
 
@@ -38,33 +38,33 @@ The graphic interface shown when the user is selecting a swing provides figures 
 
 Using prompt removes unknown input from the user, thus removing errors stemming from user input. The only time when the user is asked to input data is the prompt for their name. For this input, an error handling method named `name_error` located in `error_handling.rb`, checks if the value of the name input is nil. If so, the method will throw an arguement error and print to the console `"Name must not be empty"`. If the user only inputs white spaces, then the method will strip the white space and check if the name is empty, if so it will throw an error. The purpose of this, is so that when a new record is added to the high scores yaml file, the `:name` value is not empty.
 
-### Control Flow Diagram
+## 4. Control Flow Diagram
 
 Batting System Control Flow Diagram
 ![Batting System Control Flow Diagram](./docs/Baseball_Flowchart.png)
 
-### Implementation Plan
+## 5. Implementation Plan
 
-I have used Trello to aid implementation.
+I have used Trello as my project management platform to aid implementation. MVP features are prefixed with MVP before the title for each card. I have separated the cards in the following catagories; Design, MVP to do, Documentation to do, Doing, Done, Deadlines, Testing, and Extra Features. Each MVP card is further broken down into a checklist.
 
-![Trello Overall](./docs/trello.png)
+![Trello Overall](./docs/Trello.png)
 
 Priority MVP (Minimal Viable Product) features are listed below:
 
 1. Batting system
-   ![Trello - Batting System](./docs/trello_batting_system.png)
+   ![Trello - Batting System](./docs/Trello_Batting_System.png)
 1. Batter Class
-   ![Trello - Batter Class](./docs/trello_batting_class.png)
+   ![Trello - Batter Class](./docs/Trello_Batting_Class.png)
 1. Basic graphic interface
-   ![Trello - Graphic Interface](./docs/trello_graphic.png)
+   ![Trello - Graphic Interface](./docs/Trello_Graphic.png)
 1. High scores feature
-   ![Trello - High Score](./docs/trello_high_score.png)
+   ![Trello - High Score](./docs/Trello_High_Score.png)
 1. Menu
-   ![Trello - Menu](./docs/trello_menu.png)
+   ![Trello - Menu](./docs/Trello_Menu.png)
 1. Scoreboard including Baserunning Tracker
-   ![Trello - Scoreboard](./docs/trello_scoreboard.png)
+   ![Trello - Scoreboard](./docs/Trello_Scoreboard.png)
 1. Ruby gems: Bundler, Tty-prompt, Tty-box, Tty-font, Colorize, Minitest
-   ![Trello - Gems](./docs/trello_gems.png)
+   ![Trello - Gems](./docs/Trello_gems.png)
 
 Extra features to be implemented at a later time:
 
@@ -75,7 +75,7 @@ Extra features to be implemented at a later time:
 1. Implement batter skill to affect hit rates
 1. Implement pitcher skill to affect chances of strikes
 
-### Installation
+## 6. Installation
 
 > - Describe how to use and install the application.
 >
@@ -86,13 +86,32 @@ Extra features to be implemented at a later time:
 > - Any system/hardware requirements
 > - Ruby gems
 
-- Ruby Gems
+1. First you will need Ruby installed to run Batter-up! Find out how to install ruby from the following link:
 
-1. Bundler
-1. TTY-font
-1. TTY-box
-1. TTY-prompt
-1. Colorize (for string colouring)
-1. Paint (includes effects)
-1. Require all
-1. Minitest
+   [Install Ruby](https://www.ruby-lang.org/en/downloads/)
+
+1. Clone from the github repo using the command:
+
+   `git clone (repo link)`: [Batter-Up! Github Repo](https://github.com/JLee-WD/Batter-up)
+
+1. Navigate to the `src` folder of the repo using your terminal,
+
+   `cd JustinLee_t1a3` then `cd src`
+
+1. Next, install Ruby gem Bundler. Install bundler by entering the following command in your terminal:
+
+   `gem install bundler`.
+
+1. Finally, simply run the following command in your terminal to execute the app:
+
+   `./run_app.sh`
+
+   This will install all required gems and run Batter-Up!. Ruby Gems required:
+
+   1. Bundler
+   1. TTY-font
+   1. TTY-box
+   1. TTY-prompt
+   1. TTY-table
+   1. Colorize (for string colouring)
+   1. Minitest
